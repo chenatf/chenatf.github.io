@@ -4,56 +4,56 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://chenatf.github.io/</loc>
-<lastmod>2018-02-05T05:25:49-00:00</lastmod>
+<loc>/</loc>
+<lastmod>2018-02-05T05:35:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/archives.html</loc>
-<lastmod>2018-02-05T05:25:49-00:00</lastmod>
+<loc>/archives.html</loc>
+<lastmod>2018-02-05T05:35:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/tags.html</loc>
-<lastmod>2018-02-05T05:25:49-00:00</lastmod>
+<loc>/tags.html</loc>
+<lastmod>2018-02-05T05:35:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/categories.html</loc>
-<lastmod>2018-02-05T05:25:49-00:00</lastmod>
+<loc>/categories.html</loc>
+<lastmod>2018-02-05T05:35:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/test.html</loc>
+<loc>/test.html</loc>
 <lastmod>2018-02-05T12:03:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/category/test.html</loc>
+<loc>/category/test.html</loc>
 <lastmod>2018-02-05T12:03:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/tag/test.html</loc>
+<loc>/tag/test.html</loc>
 <lastmod>2018-02-05T12:03:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://chenatf.github.io/author/aria.html</loc>
+<loc>/author/aria.html</loc>
 <lastmod>2018-02-05T12:03:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
