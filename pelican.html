@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>如何创建并更新pelican框架的静态博客 — AriaThink</title>
+	<meta name="description" content="Title: 如何创建并更新pelican框架的静态博客; Date: 2018-02-05; Author: ARIA">
+	<meta name="author" content="Aria">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">AriaThink</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="text-center article-header">
+		<h1 itemprop="name headline" class="article-title">如何创建并更新pelican框架的静态博客</h1>
+		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h4 itemprop="name">ARIA</h4>
+		</span>
+		<time datetime="2018-02-05T17:15:00+08:00" itemprop="datePublished">Mon 05 February 2018</time>
+	</div>
+	<div>
+		Category:
+		<span itemprop="articleSection">
+			<a href="/category/python.html" rel="category">Python</a>
+		</span>
+	</div>
+ 
+	<div>
+		Tags:
+		<span itemprop="keywords">
+			<a href="/tag/pelican.html" rel="tag">pelican</a>
+		</span>
+	</div>
+	<div itemprop="articleBody" class="article-body"><h1>前言</h1>
+<p>把博客看做一个世界，第一部分就说说世界是如何创造的。因为上帝是生物出身，学了点python，因此选择了基于python开发的创世引擎pelican。不幸的是，创建世界后，上帝遗忘了这个世界。直到上帝终于完成了他的研究生的第一学期，才想起来自己还有个坑还没填。上帝要与被时间侵蚀的记忆做斗争，故内容会有所粗糙。下面便是上帝从时间中抢救出来的内容。</p>
+<h1>创世</h1>
+<h2>1. 创建github博客项目</h2>
+<blockquote>
+<p>此部分被吃掉了，大家参见github的官方文档。</p>
+</blockquote>
+<h2>2. 创建pelican博客框架</h2>
+<p>系统环境</p>
+<blockquote>
+<ul>
+<li>Ubuntu 16.04 LTS</li>
+<li>Anaconda 3</li>
+<li>Git</li>
+</ul>
+</blockquote>
+<p>首先要安装markdown和pelican。这里使用的是conda自带的安装命令，在终端下输入</p>
+<div class="highlight"><pre><span></span>conda install pelican
+conda install markdown
+</pre></div>
+
+
+<p>然后创建目录，生成博客框架，在终端下输入</p>
+<div class="highlight"><pre><span></span>mkdir blog
+<span class="nb">cd</span> blog
+pelican-quickstart
+</pre></div>
+
+
+<p>进入交互式的安装界面后，按照默认配置和自己的爱好安装，需要修改的配置可以待安装后用文本编辑器打开<code>pelicanconf.py</code>文件设置。</p>
+<blockquote>
+<p>这里好像有个坑，如何爬坑的方法被时间吃掉了。</p>
+</blockquote>
+<p>完成后,博客的框架结构应该如下</p>
+<div class="highlight"><pre><span></span>blog/
+├── content                <span class="c1"># 存放输入的markdown或RST源文件</span>
+│   └── <span class="o">(</span>pages<span class="o">)</span>            <span class="c1"># 存放手工创建的静态页面，可选</span>
+├── output                 <span class="c1"># 存放最终生成的静态博客</span>
+├── develop_server.sh      <span class="c1"># 测试服务器</span>
+├── Makefile               <span class="c1"># 管理博客的Makefile</span>
+├── pelicanconf.py         <span class="c1"># 配置文件</span>
+└── publishconf.py         <span class="c1"># 发布文件，可删除</span>
+</pre></div>
+
+
+<h2>3. 书写测试博客</h2>
+<p>选择markdown编辑器或者支持markdown的文本编辑器，按照pelican官方文档的格式要求书写测试文件，测试文件如下</p>
+<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">TEST</span>
+<span class="n">Date</span><span class="o">:</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">5</span> <span class="mi">12</span><span class="o">:</span><span class="mi">03</span>
+<span class="n">Author</span><span class="o">:</span> <span class="n">your</span> <span class="n">name</span>
+<span class="n">category</span><span class="o">:</span> <span class="n">test</span>
+<span class="n">tags</span><span class="o">:</span> <span class="n">test</span>
+
+<span class="err">#</span> <span class="n">This</span> <span class="k">is</span> <span class="n">just</span> <span class="n">a</span> <span class="n">test</span><span class="o">.</span>
+</pre></div>
+
+
+<p>将文件保存为 <code>.md</code> 格式，并保存在 <code>content</code> 目录下。完成后，打开终端，回到 <code>blog</code> 目录，输入</p>
+<div class="highlight"><pre><span></span>make html  <span class="c1">#生成博客的html文件至output目录</span>
+make serve <span class="c1">#上传至服务器，默认的是本地服务器</span>
+</pre></div>
+
+
+<p>用浏览器打开 <code>http://localhost:8000</code> 观察测试博客的内容。</p>
+<h2>4. 选择喜欢的主题</h2>
+<p>世界框架已经初步完成，上帝们可以为自己的世界选择一个喜欢的主题包。本世界采用 <code>aboutwilson</code> 主题包。</p>
+<blockquote>
+<p>更多主题请各位参考官方文档。</p>
+</blockquote>
+<p>在 <code>blog</code> 目录下，于终端输入以下命令</p>
+<div class="highlight"><pre><span></span>git clone https://github.com/getpelican/pelican-themes <span class="c1">#下载所有的官方主题</span>
+</pre></div>
+
+
+<p>打开 <code>pelicanconf.py</code> 文件，修改 <code>THEME</code> 为喜欢的主题的路径</p>
+<div class="highlight"><pre><span></span><span class="nv">THEME</span> <span class="o">=</span> <span class="s1">&#39;pelican-themes/the theme you like&#39;</span>
+</pre></div>
+
+
+<p>保存后重新生成html，上传至服务器，观察修改后的主题的效果。</p>
+<h2>5. 发布</h2>
+<p>这里只介绍发布在github上的方法，第一步完成后会在github上得到一个个人博客项目和对应的个人主页，比如本文的主页是</p>
+<div class="highlight"><pre><span></span>https://chenatf.github.io/
+</pre></div>
+
+
+<p>到 <code>output</code> 目录下，在终端中输入以下命令</p>
+<div class="highlight"><pre><span></span>git init
+git add .
+git remote add origin https://github.com/chenatf/chenatf.github.io <span class="c1">#注意替换链接地址</span>
+git pull origin master
+git commit -m <span class="s1">&#39;test&#39;</span>
+git push origin master
+</pre></div>
+
+
+<blockquote>
+<p>建议对照github的官方说明，修改 <code>makefile</code> 文件，实现一键发布。本人设置完成后只需 <code>make github &amp;&amp; make publish</code> , 即可更新博客内容。感兴趣的可以查看我的博客文件，感谢 <code>star</code> 。</p>
+</blockquote>
+<p>用浏览器打开个人主页，即可查看博客内容。</p>
+<h2>6. 添加喜欢的插件</h2>
+<p>通过插件来丰富世界的功能，更好的展示上帝的思想。具体选择哪些插件参考官方文档以及下载后的插件的说明文件。下载的方式是在终端输入以下命令</p>
+<div class="highlight"><pre><span></span>git clone https://github.com/getpelican/pelican-plugins <span class="c1">#下载所有的官方插件</span>
+</pre></div>
+
+
+<p>如何配置插件请参考插件的说明文档。</p>
+<h2>7. 添加Google Analytics和Google Webmasters</h2>
+<blockquote>
+<ul>
+<li>Google Analytics 帮助统计访问流量</li>
+<li>Google Webmasters 让谷歌收录你的博客</li>
+</ul>
+</blockquote>
+<p>参照官方文档设置，然后在 <code>pelicanconf.py</code> 中添加</p>
+<div class="highlight"><pre><span></span><span class="nv">GOOGLE_ANALYTICS</span> <span class="o">=</span> <span class="s1">&#39;Tracking ID&#39;</span> <span class="c1">#在媒体资源设置里面找，一般是UA开头</span>
+</pre></div>
+
+
+<h1>总结</h1>
+<blockquote>
+<p>首先感谢其他上帝的人生经验，本博客大部分内容参照 <code>xymelon</code> 前辈的博文书写。</p>
+</blockquote>
+<p>上帝首次创世，仍有不完善的地方。希望在这片天地里，能发展出灿烂的文明。此外，因为害怕一种名为喷子的生物，没有设置评论功能。各位要是想与我联系，还麻烦发送电子邮件至 <code>chenatf@gmail.com</code> 。</p>
+<h1>相关链接</h1>
+<p>pelican官方github仓库</p>
+<blockquote>
+<p>https://github.com/getpelican</p>
+</blockquote>
+<p>xymelon前辈的博文</p>
+<blockquote>
+<p>http://www.xycoding.com/articles/2013/11/21/blog-create/
+http://www.xycoding.com/articles/2013/11/22/blog-advance/</p>
+</blockquote>
+<p>本人的github博客仓库</p>
+<blockquote>
+<p>https://github.com/chenatf/chenatf.github.io</p>
+</blockquote></div>
+	<hr>
+	<h2>Comments</h2>
+</div>
+		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">AriaThink</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/python.html">Python (1)</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Aria 2016</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-113591953-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
